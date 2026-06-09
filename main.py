@@ -1,7 +1,18 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {"message": "Hello World"}
+class User(BaseModel):
+    name: str
+    age: int
+
+@app.post("/create-user")
+def create_user(user: User):
+    return {
+        "message": "user created",
+        "data": user
+    }
+
+#pydantic is used to check datatypes on its own without the help of creaging a dict which is not valid 
+
