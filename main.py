@@ -1,16 +1,12 @@
 from fastapi import FastAPI
-
 app = FastAPI()
 
-#users dynamic routes 
-@app.get("/users/{user_id}")
-def get_users(user_id:int):
-    return{"user_id": user_id }
+#users?name=rohith    ? here is the query parameter 
+#it is basically a filter 
 
-@app.get("/marks/{marks_scored}")
-def get_marks(marks_scored:int):
-    return{"marks_scored": marks_scored}
-
-@app.get("/names/{name_ofstudent}")
-def get_names(name_ofstudent:str):
-    return{"name_ofstudent":name_ofstudent}
+@app.get("/users")
+def get_users(name: str = None,price: int=0):
+    return {"name":name
+            "price":price
+    }
+#u can handel multiple parameters using query parameter 
